@@ -76,8 +76,12 @@ class Rotor:
                 self.wiring[letter][1] = e - letter
                 
             # move the rotor
-            self.start_letter_raw = start_letter.upper()
-            self.start_letter = ord(self.start_letter_raw) - 65
+            if type(start_letter) != int:
+                self.start_letter_raw = start_letter.upper()
+                self.start_letter = ord(self.start_letter_raw) - 65
+            else:
+                self.start_letter_raw = chr(start_letter + 65)
+                self.start_letter = start_letter
             self.rotor_letter = self.start_letter 
             self.wiring = np.roll(self.wiring, -self.start_letter, axis= 0)
             
